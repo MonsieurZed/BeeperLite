@@ -46,4 +46,16 @@ FunctionEnd
   
   ; Remove auto-start registry key on uninstall
   DeleteRegValue HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "BeeperLite"
+  
+  ; Ask user if they want to delete user data
+  MessageBox MB_YESNO "Do you want to delete all user data and cache?$\n$\nThis will remove your login session, cookies, and all stored data." IDYES deleteData IDNO skipDelete
+  
+  deleteData:
+    RMDir /r "$APPDATA\BeeperLite"
+    Goto done
+  
+  skipDelete:
+    ; Keep user data
+  
+  done:
 !macroend
