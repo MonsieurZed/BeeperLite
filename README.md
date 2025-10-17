@@ -7,20 +7,29 @@
 
 ---
 
-A minimal **Electron app** that opens a WebView pointing to **chat.beeper.com**, allowing you to run a **second Beeper instance** on your desktop.
+A minimal **Electron app** for **chat.beeper.com** — run a second Beeper instance on your desktop.
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
-* Lightweight and fast
-* Displays the official Beeper web app in a standalone window
-* Works on Windows, macOS, and Linux
-* No backend logic — everything runs through Beeper’s web client
+* Embed client of chat.beeper.com
+* Native Windows notifications
+* System tray integration
+* Auto-start with Windows
 
 ---
 
-## 🧬 Installation
+## 📦 Download & Installation
+
+### Option 1: Download Prebuilt Release
+
+Get the latest version from the [Releases page](https://github.com/MonsieurZed/BeeperLite/releases):
+
+* **`BeeperLite.Setup.X.X.X.exe`** – Full installer (auto-start option)
+* **`BeeperLite.Portable.X.X.X.exe`** – Portable version (no installation required)
+
+### Option 2: Build from Source
 
 ```bash
 git clone https://github.com/MonsieurZed/BeeperLite.git
@@ -31,13 +40,31 @@ npm start
 
 ---
 
-## 🗷️ Build
+## 🔧 Build
 
 ```bash
+# Build portable version
 npm run build
+
+# Build installer
+npm run build-installer
+
+# Build both
+npm run build-all
 ```
 
-The compiled app will be generated in the `dist/` folder (or the output folder defined in your configuration).
+The compiled files will appear in the `dist/` folder:
+
+* `BeeperLite.Portable.X.X.X.exe`
+* `BeeperLite.Setup.X.X.X.exe`
+
+---
+
+## ⚠️ Disclaimer
+
+This project is **not affiliated with Beeper**.
+It embeds the official Beeper web interface inside an Electron WebView.
+Use at your own risk — if Beeper updates its web client, this app may stop working.
 
 ---
 
@@ -47,18 +74,10 @@ Released under the [MIT License](LICENSE).
 
 ---
 
-## ⚠️ Disclaimer
-
-This project is **not affiliated with Beeper**.
-It simply embeds the official Beeper web interface inside an Electron WebView.
-Use at your own risk — if Beeper updates its web client, this app might stop working.
-
----
-
 ## 🤝 Contributing
 
 Pull requests and issues are welcome.
-Feel free to submit improvements or feature suggestions.
+Feel free to submit improvements or suggestions.
 
 ---
 

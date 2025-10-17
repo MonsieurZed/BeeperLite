@@ -1,0 +1,69 @@
+{
+  "name": "beeper-lite",
+  "version": "1.0.0",
+  "description": "BeeperLite - A minimalist Electron wrapper for Beeper chat",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win portable",
+    "build-installer": "electron-builder --win nsis",
+    "build-all": "electron-builder --win portable --win nsis"
+  },
+  "keywords": ["beeper", "electron", "webview", "chat", "lite"],
+  "author": "MonsieurZed",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.beeper.lite",
+    "productName": "BeeperLite",
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        },
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "attached_assets/image.ico",
+      "sign": null
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "BeeperLite",
+      "runAfterFinish": true,
+      "allowElevation": true,
+      "installerIcon": "attached_assets/image.ico",
+      "uninstallerIcon": "attached_assets/image.ico",
+      "artifactName": "BeeperLite.Setup.${version}.exe",
+      "perMachine": false,
+      "runAfterFinish": true,
+      "menuCategory": true,
+      "include": "build/installer.nsh",
+      "language": "2057",
+      "installerLanguages": ["en_US", "fr_FR"],
+      "multiLanguageInstaller": true
+    },
+    "portable": {
+      "artifactName": "BeeperLite.Portable.${version}.exe"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "package.json",
+      "attached_assets/image.ico"
+    ],
+    "directories": {
+      "buildResources": "attached_assets",
+      "output": "dist"
+    }
+  }
+}
