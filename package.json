@@ -19,6 +19,7 @@
   "build": {
     "appId": "com.beeper.lite",
     "productName": "BeeperLite",
+    "publish": null,
     "win": {
       "target": [
         {
@@ -45,7 +46,6 @@
       "uninstallerIcon": "attached_assets/image.ico",
       "artifactName": "BeeperLite.Setup.${version}.exe",
       "perMachine": false,
-      "runAfterFinish": true,
       "menuCategory": true,
       "include": "build/installer.nsh",
       "language": "2057",
