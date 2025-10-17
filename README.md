@@ -1,8 +1,15 @@
 # BeeperLite
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Made with Electron](https://img.shields.io/badge/Made%20with-Electron-47848F.svg)](https://www.electronjs.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-green.svg)](https://nodejs.org/)
+<p align="center">
+  <img src="https://github.com/MonsieurZed/BeeperLite/blob/main/attached_assets/image.ico" width="64" alt="BeeperLite Logo" />
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+  <a href="https://www.electronjs.org/"><img src="https://img.shields.io/badge/Made%20with-Electron-47848F.svg" alt="Made with Electron"></a>
+  <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-%3E%3D18-green.svg" alt="Node.js"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-blue.svg" alt="Platform"></a>
+</p>
 
 ---
 
@@ -84,3 +91,7 @@ Feel free to submit improvements or suggestions.
 
 **MonsieurZed**
 [GitHub Profile](https://github.com/MonsieurZed)
+
+<p align="center">
+  <img src="https://github.com/MonsieurZed/ZTK/blob/main/assets/sharky.png" width="96" alt="Sharky" />
+</p>
