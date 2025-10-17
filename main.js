@@ -178,8 +178,37 @@ function createWindow() {
     mainWindow.hide();
   });
 
+  // Stop flashing when window gets focus
+  mainWindow.on('focus', () => {
+    mainWindow.flashFrame(false);
+  });
+
   // Enable notifications
   mainWindow.webContents.on('dom-ready', () => {
+    // Monitor page title for unread count
+    setInterval(() => {
+      mainWindow.webContents.executeJavaScript(`document.title`).then(title => {
+        // Extract unread count from title (format: "Beeper [3]" or "Beeper")
+        const match = title.match(/\[(\d+)\]/);
+        const unreadCount = match ? parseInt(match[1]) : 0;
+        
+        // Update badge count
+        if (unreadCount > 0) {
+          // Set badge count on taskbar (Windows 10/11)
+          app.setBadgeCount(unreadCount);
+          
+          // Flash taskbar icon to get attention
+          if (!mainWindow.isFocused()) {
+            mainWindow.flashFrame(true);
+          }
+        } else {
+          // Clear badge
+          app.setBadgeCount(0);
+          mainWindow.flashFrame(false);
+        }
+      });
+    }, 2000); // Check every 2 seconds
+    
     // Inject notification interceptor
     mainWindow.webContents.executeJavaScript(`
       // Override Notification constructor to use native notifications
