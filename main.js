@@ -299,30 +299,34 @@ if (!gotTheLock) {
   app.whenReady().then(() => {
     // Configuration pour Windows
     if (process.platform === 'win32') {
-    console.log('🪟 Setting up Windows notifications...');
-    app.setAppUserModelId('com.beeper.lite');
-    
-    // Setup auto-start functionality
-    setupAutoStart();
-  }
-
-  // Handle IPC for notifications
-  ipcMain.handle('show-notification', (event, title, body, icon) => {
-    return showNotification(title, body, icon);
-  });
-
-  // Create system tray
-  createTray();
-
-  createWindow();
-
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
-    } else if (mainWindow) {
-      mainWindow.show();
+      console.log('🪟 Setting up Windows notifications...');
+      app.setAppUserModelId('com.beeper.lite');
+      
+      // Setup auto-start functionality
+      setupAutoStart();
+      
+      // Test notification system
+      console.log('Testing notification support:', Notification.isSupported());
     }
-  });
+
+    // Handle IPC for notifications
+    ipcMain.handle('show-notification', (event, title, body, icon) => {
+      console.log('📨 IPC received notification request:', { title, body });
+      return showNotification(title, body, icon);
+    });
+
+    // Create system tray
+    createTray();
+
+    createWindow();
+
+    app.on('activate', () => {
+      if (BrowserWindow.getAllWindows().length === 0) {
+        createWindow();
+      } else if (mainWindow) {
+        mainWindow.show();
+      }
+    });
   });
 }
 
