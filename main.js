@@ -126,7 +126,8 @@ function createWindow() {
       nodeIntegration: false,
       webSecurity: true,
       enableRemoteModule: false,
-      backgroundThrottling: false
+      backgroundThrottling: false,
+      partition: 'persist:beeperlite'
     },
     title: 'BeeperLite',
     show: false
@@ -274,9 +275,30 @@ function createWindow() {
   });
 }
 
-app.whenReady().then(() => {
-  // Configuration pour Windows
-  if (process.platform === 'win32') {
+// Request single instance lock
+const gotTheLock = app.requestSingleInstanceLock();
+
+if (!gotTheLock) {
+  // Another instance is already running, quit this one
+  app.quit();
+} else {
+  // This is the first instance
+  app.on('second-instance', (event, commandLine, workingDirectory) => {
+    // Someone tried to run a second instance, focus our window instead
+    if (mainWindow) {
+      if (!mainWindow.isVisible()) {
+        mainWindow.show();
+      }
+      if (mainWindow.isMinimized()) {
+        mainWindow.restore();
+      }
+      mainWindow.focus();
+    }
+  });
+
+  app.whenReady().then(() => {
+    // Configuration pour Windows
+    if (process.platform === 'win32') {
     console.log('🪟 Setting up Windows notifications...');
     app.setAppUserModelId('com.beeper.lite');
     
@@ -301,7 +323,8 @@ app.whenReady().then(() => {
       mainWindow.show();
     }
   });
-});
+  });
+}
 
 app.on('window-all-closed', () => {
   // Don't quit the app on window close, keep running in tray

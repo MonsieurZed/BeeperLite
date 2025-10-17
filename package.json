@@ -1,6 +1,6 @@
 {
   "name": "beeper-lite",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "BeeperLite - A minimalist Electron wrapper for Beeper chat",
   "main": "main.js",
   "scripts": {

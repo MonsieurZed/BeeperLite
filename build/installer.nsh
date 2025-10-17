@@ -27,6 +27,9 @@ Function AutoStartPageLeave
 FunctionEnd
 
 !macro customInstall
+  ; Kill any running instances before installation
+  nsExec::ExecToLog 'taskkill /F /IM BeeperLite.exe'
+  
   ; Check if auto-start checkbox was checked
   ${If} $AutoStartCheckboxState == ${BST_CHECKED}
     ; Create registry key for auto-start
@@ -38,6 +41,9 @@ FunctionEnd
 !macroend
 
 !macro customUnInstall
+  ; Kill any running instances before uninstallation
+  nsExec::ExecToLog 'taskkill /F /IM BeeperLite.exe'
+  
   ; Remove auto-start registry key on uninstall
   DeleteRegValue HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "BeeperLite"
 !macroend
